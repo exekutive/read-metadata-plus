@@ -41,7 +41,21 @@
 	  {/if}
 	  {$rm.RM_KEY} = {$rm.RM_VALUE}<br>
 	{/foreach}
-    <p>
+    <p >						{* XMP SECTION *}
+
+	<span style="font-size:1.2em;font-weight: bold;">
+	{$XMPheader}
+	</span><br>
+
+
+	{if isset ($XMPdata)}
+		{foreach from=$XMPdata item=XMPprop key=XMPname}
+			<pre>{$XMPname}		{$XMPprop}</pre>
+		{/foreach}
+	{/if}
+
+	<br>[end of XMP]
+	
   </fieldset>
   
 {/if}
