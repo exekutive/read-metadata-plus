@@ -175,6 +175,30 @@ if (isset($_POST['submitreadmetadata'])){
 		array(
 		  'RM_EXIFWORDING' => 'EXIF Fields in ',
 	  ));
+	  
+	#
+	#       Read and parse XMP metadata
+	#	(ImageMagick PHP extension required)
+	#
+
+	//	Check ImageMagick is installed
+	if	(	extension_loaded(	'imagick' ) &&
+			class_exists(		'imagick' )) { 
+
+		//create new Imagick object from image & get the XMP data
+		$RM_IM =			new imagick($filename) ;		
+		$RM_XMP =			$RM_IM -> getImageProperties( "xmp:*" ) ;
+
+		// Setup readout
+		$headerTxt =			'XMP Properties:' ;
+		$template -> assign(		'XMPdata', $RM_XMP) ;
+	}
+	else {
+		$headerTxt =			'Unable to read XMP data. ImageMagick not loaded.' ;
+	}
+
+	$template ->	assign(			'XMPheader', $headerTxt ) ;
+
 
 	
   }else{
