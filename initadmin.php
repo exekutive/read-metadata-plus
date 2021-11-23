@@ -46,7 +46,7 @@ function read_metadataprefiltre(){
   }
 }
 
-function read_metadataprefiltreT($content, &$smarty){
+function read_metadataprefiltreT($content){
   $search = '#          </ul>
         </td>
       </tr>
